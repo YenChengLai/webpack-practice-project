@@ -8,11 +8,15 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    rule: [
+    rules: [
       {
         use: 'babel-loader',
         test: /\.js$/,
         exclude: /node_modules/
+      },
+      {
+          use: ['style-loader', 'css-loader'],  // the order is important, dealed from right to left
+          test: /\.css$/
       }
     ]
   }
