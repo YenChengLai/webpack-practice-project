@@ -15,7 +15,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js' // [name] will be replaced by entry's key
+    filename: '[name].[chunkhash].js' // [name] will be replaced by entry's key
+                                      // add chunkhash to tell browser to reload the modified js file
   },
   module: {
     rules: [
@@ -37,7 +38,13 @@ module.exports = {
   ],
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        }
+      }
     }
   },
   mode: 'production'
