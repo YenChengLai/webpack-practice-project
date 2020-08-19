@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[chunkhash].js' // [name] will be replaced by entry's key
-                                      // add chunkhash to tell browser to reload the modified js file
+    // add chunkhash to tell browser to reload the modified js file
   },
   module: {
     rules: [
@@ -34,6 +34,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
   optimization: {
