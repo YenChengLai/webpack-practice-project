@@ -15,7 +15,22 @@ const componentRoutes = {
     {
       path: 'artist/new',
       getComponent(location, cb) {
-        
+        System.import('./components/artists/ArtistCreate')
+          .then(module => cb(null, module.default));
+      }
+    },
+    {
+      path: 'artist/:id',
+      getComponent(location, cb) {
+        System.import('./components/artists/ArtistDetail')
+          .then(module => cb(null, module.default));
+      }
+    },
+    {
+      path: 'artist/:id/edit',
+      getComponent(location, cb) {
+        System.import('./components/artists/ArtistEdit')
+          .then(module => cb(null, module.default));
       }
     }
   ]
